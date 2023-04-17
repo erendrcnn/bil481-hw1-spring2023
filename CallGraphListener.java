@@ -5,16 +5,16 @@ import java.util.*;
 // METIN EREN DURUCAN - 201101038 - BIL 481 - HOMEWORK 1
 public class CallGraphListener extends Java8BaseListener {
     // This methods are declared as a set to avoid duplicates in the graph.
-    private static Set<String> declaredMethods = null;                  // declared methods
-    private static Set<String> allMethods = null;                       // declared + referenced
+    private static Set<String> declaredMethods = null;                          // declared methods
+    private static Set<String> allMethods = null;                               // declared + referenced
     // This methods are declared as a map to link the methods to their classes and packages.
-    private Map<String, Set<String>> methodCalls = new HashMap<>();     // caller -> callees
-    private Map<String, String> methodToClass = new HashMap<>();        // method -> class
-    private Map<String, String> methodToPackage = new HashMap<>();      // method -> package
+    private Map<String, Set<String>> methodCalls = new LinkedHashMap<>();       // caller -> callees
+    private Map<String, String> methodToClass = new LinkedHashMap<>();          // method -> class
+    private Map<String, String> methodToPackage = new LinkedHashMap<>();        // method -> package
     // These variables are used to collect the current method, class and package.
-    private String currentMethod = null;                                // current method
-    private String currentClass = null;                                 // current class
-    private String currentPackage = "";                                 // current package
+    private String currentMethod = null;                                        // current method
+    private String currentClass = null;                                         // current class
+    private String currentPackage = "";                                         // current package
 
     // Collect current package when entering the package declaration
     @Override
@@ -122,7 +122,7 @@ public class CallGraphListener extends Java8BaseListener {
         
         // Collect declared methods and all methods
         declaredMethods = listener.methodToClass.keySet();          // collect all declared methods
-        allMethods = new HashSet<>(declaredMethods);                // create a new set with the declared methods
+        allMethods = new LinkedHashSet<>(declaredMethods);          // create a new set with the declared methods
         listener.methodCalls.values().forEach(allMethods::addAll);  // add all methods called by declared methods
 
         // Add nodes to the graph

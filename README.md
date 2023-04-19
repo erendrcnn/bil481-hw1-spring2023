@@ -14,6 +14,15 @@ The resulting call graph is printed to standard output in the Graphviz language,
 
 Note: The way the source code is translated into dot language takes place according to the order of the methods called in the given input.
 
+# Installation:
+
+Getting started parsing with ANTLR4-Tools:
+https://github.com/antlr/antlr4/blob/master/doc/getting-started.md
+
+Getting started graph visualization with Graphviz:
+https://graphviz.org/download/
+
+
 # Example run:
 
 ```
